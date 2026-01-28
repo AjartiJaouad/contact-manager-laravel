@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Groupes - Mercury</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
+
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Gestion des Groupes</h1>
@@ -35,13 +37,27 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($groups as $group)
+                        <tr>
+                            <td>{{ $group->id }}</td>
+                            <td>{{ $group->name }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning">Modifier</button>
+                                <button class="btn btn-sm btn-danger">Supprimer</button>
+                            </td>
+                        </tr>
+                        @endforeach
+
+                        @if($groups->isEmpty())
                         <tr>
                             <td colspan="3" class="text-center">Aucun groupe pour le moment</td>
                         </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </body>
+
 </html>
