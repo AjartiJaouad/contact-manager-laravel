@@ -37,20 +37,44 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($groups as $group)
-                        <tr>
-                            <td>{{ $group->id }}</td>
-                            <td>{{ $group->name }}</td>
-                            <td>
-                                <a href="{{ route('groups.edit', $group->id) }}" class="btn btn-sm btn-warning">Modifier</a> <button class="btn btn-sm btn-danger">Supprimer</button>
-                            </td>
-                        </tr>
+                        @foreach ($groups as $group)
+                            <tr>
+                                <td>{{ $group->id }}</td>
+                                <td>{{ $group->name }}</td>
+                                <td>
+                                    <a href="{{ route('groups.edit', $group->id) }}"
+                                        class="btn btn-sm btn-warning">Modifier</a>
+
+
+
+
+
+
+                                    <form action="{{ route('groups.destroy', $group->id) }}" method="POST"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('DELETE') <button type="submit" class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce groupe ?')">
+                                            Supprimer
+                                        </button>
+                                    </form>
+
+
+
+
+
+
+
+
+
+                                </td>
+                            </tr>
                         @endforeach
 
-                        @if($groups->isEmpty())
-                        <tr>
-                            <td colspan="3" class="text-center">Aucun groupe pour le moment</td>
-                        </tr>
+                        @if ($groups->isEmpty())
+                            <tr>
+                                <td colspan="3" class="text-center">Aucun groupe pour le moment</td>
+                            </tr>
                         @endif
                     </tbody>
                 </table>

@@ -10,3 +10,5 @@ Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
 Route::post('/groups', [GroupController::class, 'store'])->name('groups.store');
 Route::get('/groups/{group}/edit', [GroupController::class, 'edit'])->name('groups.edit');
 Route::put('/groups/{group}', [GroupController::class, 'update'])->name('groups.update');
+
+Route::delete('/groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');

@@ -42,4 +42,12 @@ class GroupController extends Controller
 
         return redirect()->route('groups.index');
     }
+
+    public function destroy(Group $group)
+    {
+
+        $group->delete();
+
+        return redirect()->route('groups.index');
+    }
 }
