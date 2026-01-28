@@ -42,8 +42,7 @@
                             <td>{{ $group->id }}</td>
                             <td>{{ $group->name }}</td>
                             <td>
-                                <button class="btn btn-sm btn-warning">Modifier</button>
-                                <button class="btn btn-sm btn-danger">Supprimer</button>
+                                <a href="{{ route('groups.edit', $group->id) }}" class="btn btn-sm btn-warning">Modifier</a> <button class="btn btn-sm btn-danger">Supprimer</button>
                             </td>
                         </tr>
                         @endforeach
