@@ -41,6 +41,15 @@
                                 <td>
                                     <a href="{{ route('contacts.edit', $contact->id) }}"
                                         class="btn btn-sm btn-warning">Modifier</a>
+
+                                    <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('DELETE') <button type="submit" class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Voulez-vous vraiment supprimer ce contact ?')">
+                                            Supprimer
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
