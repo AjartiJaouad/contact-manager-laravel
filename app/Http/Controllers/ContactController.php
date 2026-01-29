@@ -31,6 +31,8 @@ class ContactController extends Controller
             'group_id' => 'required|exists:groups,id',
 
         ]);
-     
+
+     Contact::create($request->all());
+     return redirect()->route('contacts.index');
     }
 }
