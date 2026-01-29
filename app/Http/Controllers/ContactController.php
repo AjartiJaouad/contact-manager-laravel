@@ -34,7 +34,7 @@ class ContactController extends Controller
 
         Contact::create($request->all());
 
-        return redirect()->route('contacts.index')->with('sccesess', 'contact ajouté avec succés');
+        return redirect()->route('contacts.index')->with('success', 'Contact ajouté avec succès');
     }
 
     public function edit(Contact $contact)
@@ -44,7 +44,7 @@ class ContactController extends Controller
         return view('contacts.edit', compact('contact', 'groups'));
     }
 
-    public function update(Request $request, $contact)
+    public function update(Request $request, Contact $contact)
     {
         $request->validate([
             'first_name' => 'required|string|max:255',
@@ -53,6 +53,7 @@ class ContactController extends Controller
             'phone' => 'nullable|string',
             'group_id' => 'required|exists:groups,id',
         ]);
+
         $contact->update($request->all());
 
         return redirect()->route('contacts.index')->with('success', 'Contact mis à jour avec succès !');
@@ -62,7 +63,6 @@ class ContactController extends Controller
     {
         $contact->delete();
 
-        return redirect()->route('contacts.index')
-            ->with('success', 'Contact supprimé avec succès !');
+        return redirect()->route('contacts.index')->with('success', 'Contact supprimé avec succès !');
     }
 }
