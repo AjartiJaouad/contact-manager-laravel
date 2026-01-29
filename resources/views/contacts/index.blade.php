@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Contacts</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Liste des Contacts</h1>
+            <a href="{{ route('contacts.create') }}" class="btn btn-primary">Ajouter un contact</a>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Prénom</th>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Groupe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($contacts as $contact)
+                            <tr>
+                                <td>{{ $contact->id }}</td>
+                                <td>{{ $contact->first_name }}</td>
+                                <td>{{ $contact->last_name }}</td>
+                                <td>{{ $contact->email }}</td>
+                                <td>
+                                    <span class="badge bg-info">{{ $contact->group->name }}</span>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                        @if ($contacts->isEmpty())
+                            <tr>
+                                <td colspan="5" class="text-center">Aucun contact trouvé.</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+
+                <a href="{{ route('groups.index') }}" class="mt-3 d-inline-block">← Gérer les groupes</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
