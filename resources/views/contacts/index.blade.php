@@ -25,6 +25,7 @@
                             <th>Nom</th>
                             <th>Email</th>
                             <th>Groupe</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,12 +38,16 @@
                                 <td>
                                     <span class="badge bg-info">{{ $contact->group->name }}</span>
                                 </td>
+                                <td>
+                                    <a href="{{ route('contacts.edit', $contact->id) }}"
+                                        class="btn btn-sm btn-warning">Modifier</a>
+                                </td>
                             </tr>
                         @endforeach
 
                         @if ($contacts->isEmpty())
                             <tr>
-                                <td colspan="5" class="text-center">Aucun contact trouvé.</td>
+                                <td colspan="6" class="text-center">Aucun contact trouvé.</td>
                             </tr>
                         @endif
                     </tbody>
