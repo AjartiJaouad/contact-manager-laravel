@@ -9,7 +9,7 @@ class Contact extends Model
 {
     use HasFActory;
 
-    protected $fillable = ['first_name ', 'last_name', 'email', 'phone', 'group_id'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'phone', 'group_id'];
 
     public function group()
     {
