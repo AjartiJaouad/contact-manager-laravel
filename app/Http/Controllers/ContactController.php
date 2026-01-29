@@ -10,7 +10,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $contacts = Contact::with('group')->get();
+        $contacts = Contact::with('group')->paginate(10);
 
         return view('contacts.index', compact('contacts'));
     }
