@@ -13,5 +13,9 @@ class ContactController extends Controller
         return view('contacts.index', compact('contacts'));
     }
 
-    
+        public function create(){
+            $groups =Group::all();
+            return view('contacts.create',compact('groups'));
+        }
+
 }
