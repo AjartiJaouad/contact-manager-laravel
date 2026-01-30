@@ -8,9 +8,18 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::with('group')->paginate(10);
+        $query = Contact::with('group');
+
+        if ($request->has('search')) {
+            $search = $request->get('search');
+
+            $query->where('first_name', 'like', "%{$search}%")
+                ->orWhere('last_name', 'like', "%{$search}%");
+        }
+
+        $contacts = $query->paginate(10);
 
         return view('contacts.index', compact('contacts'));
     }
