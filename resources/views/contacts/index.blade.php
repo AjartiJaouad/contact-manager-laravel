@@ -15,6 +15,18 @@
             <a href="{{ route('contacts.create') }}" class="btn btn-primary">Ajouter un contact</a>
         </div>
 
+        <form action="{{ route('contacts.index') }}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Rechercher par nom..."
+                    value="{{ request('search') }}">
+                <button type="submit" class="btn btn-secondary">Rechercher</button>
+
+                @if (request('search'))
+                    <a href="{{ route('contacts.index') }}" class="btn btn-outline-secondary">X</a>
+                @endif
+            </div>
+        </form>
+
         <div class="card">
             <div class="card-body">
                 @if (session('success'))
@@ -23,6 +35,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
+
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -51,7 +64,8 @@
                                     <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST"
                                         style="display:inline;">
                                         @csrf
-                                        @method('DELETE') <button type="submit" class="btn btn-sm btn-danger"
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger"
                                             onclick="return confirm('Voulez-vous vraiment supprimer ce contact ?')">
                                             Supprimer
                                         </button>
@@ -68,10 +82,16 @@
                     </tbody>
                 </table>
 
+                <div class="mt-3">
+                    {{ $contacts->links() }}
+                </div>
+
                 <a href="{{ route('groups.index') }}" class="mt-3 d-inline-block">← Gérer les groupes</a>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
